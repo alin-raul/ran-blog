@@ -52,13 +52,13 @@ const Navbar = () => {
     // Main nav container: sticky, animated, and themed
     <nav
       className={`
-        sticky top-0 z-50 w-full bg-background
+        sticky top-0 z-50 w-full bg-background/70 backdrop-blur-sm
         transition-transform duration-300 ease-in-out
         ${isVisible ? "translate-y-0" : "-translate-y-full"}
       `}
     >
       <div className="max-w-screen-2xl mx-auto">
-        <div className="flex items-center justify-between p-4 border-x">
+        <div className="flex items-center justify-between p-4 ">
           <Link href="/">
             <h1 className="text-lg">
               <span className="font-black">RAN</span>|Blog
@@ -77,7 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom section: Navigation links */}
-        <div className="flex py-2 px-4 gap-6 border bg-background/95 backdrop-blur-sm">
+        <div className="flex py-2 px-4 gap-6">
           {Links.map((link) => (
             <Link
               href={link.href}

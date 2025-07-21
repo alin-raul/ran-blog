@@ -4,24 +4,27 @@ import { Button } from "@/components/ui/button";
 
 const Card = () => {
   return (
-    <div className="flex py-4 justify-center mt-10 gap-8">
-      <div className="relative w-1/2 h-96 overflow-hidden">
+    // Stacks vertically on mobile, row on medium screens and up
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      {/* Image container now takes full width on mobile */}
+      <div className="relative w-full md:w-1/2 h-80 overflow-hidden my-2">
         <Image
           src="/images/blog.webp"
           alt="image"
           fill
-          className="object-cover rounded-4xl"
+          // Consistent rounded corners
+          className="object-cover rounded-xl"
         />
       </div>
-      <div className="w-1/2 flex flex-col ">
-        <div className="flex opacity-80">
-          <span className="justify-start ">
-            13.07.2025 -{" "}
-            <span className="text-red-400 font-semibold">CODING</span>
-          </span>
+      {/* Text content takes full width on mobile */}
+      <div className="w-full md:w-1/2 flex flex-col">
+        <div className="opacity-80 mb-2">
+          <span>13.07.2025 - </span>
+          <span className="text-red-400 font-semibold">CODING</span>
         </div>
-        <div className="flex flex-col justify-center h-full">
-          <h1 className="text-xl font-bold my-4">
+        {/* Removed flex utils that are no longer needed */}
+        <div>
+          <h1 className="text-2xl font-bold my-2">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </h1>
           <p className="mb-4 opacity-60">
@@ -31,8 +34,7 @@ const Card = () => {
             nihil? Nihil, commodi?
           </p>
         </div>
-
-        <Button className="w-fit hover:cursor-pointer" variant={"link"}>
+        <Button className="w-fit hover:cursor-pointer mt-auto" variant={"link"}>
           Read more
         </Button>
       </div>

@@ -123,4 +123,39 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-bold;
+  }
+  h3 {
+    @apply text-lg font-bold;
+  }
+  ul,
+  ol {
+    @apply my-5 ml-1 pl-4; /* Example using Tailwind utilities */
+  }
+
+  ul {
+    @apply list-disc; /* Adds bullet points */
+  }
+
+  ol {
+    @apply list-decimal; /* Adds numbers */
+  }
+
+  ul li p,
+  ol li p {
+    @apply my-1; /* Example using Tailwind utilities */
+  }
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+  height: 0;
+  filter: opacity(40%);
 }

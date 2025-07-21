@@ -4,24 +4,30 @@ import { Button } from "@/components/ui/button";
 
 const Featured = () => {
   return (
-    <div>
-      <h1 className="text-7xl mt-40">
+    // Reduced top margin for better mobile view
+    <div className="mt-10 lg:mt-20">
+      {/* Responsive text size */}
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
         <b>Hey, Raul dev here!</b> Discover my stories and creative ideas.
       </h1>
-      <div className="lg:flex py-4 justify-center mt-10 gap-8">
-        <div className="relative lg:w-1/2 h-96 overflow-hidden">
+      {/* Stacks vertically by default, row on large screens */}
+      <div className="flex flex-col lg:flex-row items-center mt-10 gap-8">
+        {/* Removed fixed width, flex handles it */}
+        <div className="relative w-full h-80 lg:h-96">
           <Image
             src="/images/blog.webp"
             alt="image"
             fill
-            className="object-cover rounded-4xl"
+            // Consistent rounded corners
+            className="object-cover rounded-xl"
           />
         </div>
-        <div className="lg:w-1/2 flex flex-col justify-center">
-          <h1 className="text-4xl font-bold mb-4">
+        {/* Centered text and items for a cleaner look */}
+        <div className="flex flex-col justify-center lg:w-1/2">
+          <h1 className="text-3xl lg:text-4xl font-bold mb-4">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </h1>
-          <p className="mb-4 opacity-60">
+          <p className="mb-6 opacity-60">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas quasi
             libero aspernatur voluptate a, repellat fuga fugiat, tempora
             accusamus quam iusto officiis numquam animi nulla adipisci aliquam

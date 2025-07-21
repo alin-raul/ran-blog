@@ -92,21 +92,23 @@ const EditorsPick = () => {
 
 const Menu = () => {
   return (
-    <div className="flex-2">
-      <div className="mt-10 xl:mt-0">
-        <h1 className="text-lg opacity-60">What's hot</h1>
+    // Removed flex-2 as width is handled by parent
+    <div>
+      {/* Removed top margin, as it's now handled by the parent container */}
+      <div>
+        <h2 className="text-lg opacity-60">What's hot</h2>
         <h1 className="text-4xl font-bold mt-2 mb-10">Most Popular</h1>
         <MostPopular />
       </div>
 
-      <div className="mt-20">
-        <h1 className="text-lg opacity-60">Discover by topic</h1>
+      <div className="mt-14">
+        <h2 className="text-lg opacity-60">Discover by topic</h2>
         <h1 className="text-4xl font-bold mt-2 mb-6">Categories</h1>
         <Categories />
       </div>
 
-      <div className="mt-20">
-        <h1 className="text-lg opacity-60">Chosen by the editor</h1>
+      <div className="mt-14">
+        <h2 className="text-lg opacity-60">Chosen by the editor</h2>
         <h1 className="text-4xl font-bold mt-2 mb-6">Editors Pick</h1>
         <EditorsPick />
       </div>
