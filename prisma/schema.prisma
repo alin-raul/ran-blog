@@ -13,3 +13,94 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model Post {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  content       String    @db.Text // Use @db.Text for long content like HTML
+  featuredImage String?   // Optional: The main image for the post card/header
+  published     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  views         Int       @default(0)
+
+  // Relation to Category (Many-to-One)
+  // A post belongs to one category
+  category      Category  @relation(fields: [catSlug], references: [slug])
+  catSlug       String
+
+  // Relation to User (Many-to-One)
+  // A post is written by one user
+  author        User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      String
+
+  // Relation to Images (One-to-Many)
+  // A post can have multiple images in its content
+  images        Image[]
+
+  // Relation to Comments (One-to-Many)
+  // A post can have many comments
+  comments      Comment[]
+}
+
+// Model for the four main categories
+model Category {
+  id    String @id @default(cuid())
+  slug  String @unique
+  name  String
+  icon  String?
+  color String
+
+  // Relation to Post (One-to-Many)
+  // A category can have many posts
+  posts Post[]
+}
+
+// Model for comments on a post
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  // Relation to User (Many-to-One)
+  // A comment is made by one user
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+
+  // Relation to Post (Many-to-One)
+  // A comment belongs to one post
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+}
+
+// Model for a user, linked to your Clerk authentication
+model User {
+  id        String    @id // This will be the Clerk User ID
+  username  String?   
+  imageUrl  String?   
+  name      String?
+  email     String    @unique 
+
+
+  // Relation to Post (One-to-Many)
+  // A user can write many posts
+  posts     Post[]
+
+  // Relation to Comment (One-to-Many)
+  // A user can make many comments
+  comments  Comment[]
+}
+
+// Model for images uploaded and used within posts
+model Image {
+  id      String  @id @default(cuid())
+  url     String  // The URL from your image hosting service (e.g., Cloudinary, Vercel Blob)
+  altText String?
+
+  // Relation to Post (Many-to-One)
+  // An image belongs to one post
+  post    Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId  String
+}
